@@ -11,6 +11,7 @@
 
 	<modules>
 		<module>ms-center</module>
+		<module>ms-provider-system</module>
 	</modules>
 
 	<parent>

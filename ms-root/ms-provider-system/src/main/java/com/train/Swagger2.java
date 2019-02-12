@@ -1,4 +1,4 @@
-package com.tool;
+package com.train;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ public class Swagger2 {
                 .apiInfo(apiInfo())
                 .select()
                 //为当前包路径
-                .apis(RequestHandlerSelectors.basePackage("com.tool.provider.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.train.provider.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

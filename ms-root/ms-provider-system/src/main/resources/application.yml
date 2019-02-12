@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ms-provider
+    name: ms-provider-system
 
 server:
   port: 8762

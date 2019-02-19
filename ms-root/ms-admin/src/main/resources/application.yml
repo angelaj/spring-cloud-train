@@ -1,12 +1,46 @@
 spring:
   application:
     name: ms-admin
+  cache:
+      type: ehcache
+      ehcache:
+        config: classpath:ehcache.xml
+  freemarker:
+      allow-request-override: false
+      allow-session-override: false
+      cache: false
+      charset: utf-8
+      check-template-location: true
+      content-type: text/html
+      enabled: true
+      expose-request-attributes: false
+      expose-session-attributes: false
+      expose-spring-macro-helpers: true
+      prefer-file-system-access: true
+      suffix: .ftl
+      template-loader-path: classpath:/templates/
+      order: 1
+      settings:
+        template_update_delay: 0
+        default_encoding: UTF-8
+        classic_compatible: true
+        date_format: yyyy-MM-dd
+        time_format: HH:mm:ss
+        datetime_format: yyyy-MM-dd HH:mm:ss
 
 server:
   port: 8765
 
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 
+feign:
+  hystrix:
+    enabled: true #启用 feign的hystrix
+
+app:
+  provider: ms-provider

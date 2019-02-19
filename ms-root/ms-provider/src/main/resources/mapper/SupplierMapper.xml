@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.train.mapper.SupplierMapper" >
+  <resultMap id="BaseResultMap" type="com.train.model.Supplier" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="supplier_name" property="supplierName" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, supplier_name, contact, phone, email, telephone, address, remark, create_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from supplier
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from supplier
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.train.model.Supplier" >
+    insert into supplier (id, supplier_name, contact, 
+      phone, email, telephone, 
+      address, remark, create_time, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{supplierName,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.train.model.Supplier" >
+    insert into supplier
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="supplierName != null" >
+        supplier_name,
+      </if>
+      <if test="contact != null" >
+        contact,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="supplierName != null" >
+        #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.train.model.Supplier" >
+    update supplier
+    <set >
+      <if test="supplierName != null" >
+        supplier_name = #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.train.model.Supplier" >
+    update supplier
+    set supplier_name = #{supplierName,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <sql id="queryCondition">
+    <if test="supplierId != null">
+      AND s.id = #{supplierId}
+    </if>
+    <if test="supplierIdAry != null">
+      AND s.id IN
+      <foreach close=")" collection="supplierIdAry" index="index" item="supplierIdItem" open="(" separator=",">
+        #{supplierIdItem}
+      </foreach>
+    </if>
+    <if test="supplierName != null">
+      AND s.supplier_name LIKE concat("%", #{supplierName}, "%")
+    </if>
+  </sql>
+
+  <select id="getSupplierCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+    SELECT COUNT(DISTINCT s.id)
+    FROM supplier s
+    <where>
+      <include refid="queryCondition" />
+    </where>
+  </select>
+
+  <select id="getSupplierList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT DISTINCT s.*
+    FROM supplier s
+    <where>
+      <include refid="queryCondition" />
+    </where>
+    <choose>
+      <when test="sort !=null and order !=null">
+        ORDER  BY s.${sort} ${order}
+      </when>
+      <otherwise>
+        ORDER  BY s.create_time DESC
+      </otherwise>
+    </choose>
+    <if test="start != null and limit != null">
+      LIMIT #{start}, #{limit}
+    </if>
+  </select>
+
+  <select id="getById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT *
+    FROM supplier
+    WHERE id = #{id}
+  </select>
+
+  <insert id="insertSupplier" parameterType="com.train.model.Supplier">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO supplier (supplier_name, contact, phone, email, telephone, address, remark, create_time, update_time)
+    values (#{supplierName}, #{contact}, #{phone}, #{email}, #{telephone}, #{address}, #{remark}, now(), now())
+    ON DUPLICATE KEY UPDATE update_time = now()
+  </insert>
+
+  <update id="updateSupplier" parameterType="com.train.model.Supplier">
+    UPDATE supplier
+    SET supplier_name = #{supplierName},
+    contact = #{contact},
+    phone = #{phone},
+    email = #{email},
+    telephone = #{telephone},
+    address = #{address},
+    remark = #{remark},
+    update_time = now()
+    WHERE id = #{id}
+  </update>
+</mapper>

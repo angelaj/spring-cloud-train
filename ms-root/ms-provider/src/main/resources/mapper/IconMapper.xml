@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.train.mapper.IconMapper" >
+  <resultMap id="BaseResultMap" type="com.train.model.Icon" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="icon_name" property="iconName" jdbcType="VARCHAR" />
+    <result column="icon_style" property="iconStyle" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select id="getIconCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+    SELECT COUNT(DISTINCT ic.id)
+    FROM icon ic
+    <where>
+      <include refid="queryCondition" />
+    </where>
+  </select>
+
+  <select id="getIconList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT DISTINCT ic.*
+    FROM icon ic
+    <where>
+      <include refid="queryCondition" />
+    </where>
+    <choose>
+      <when test="sort !=null and order !=null">
+        ORDER  BY ic.${sort} ${order}
+      </when>
+      <otherwise>
+        ORDER  BY ic.create_time DESC
+      </otherwise>
+    </choose>
+    <if test="start != null and limit != null">
+      LIMIT #{start}, #{limit}
+    </if>
+  </select>
+
+  <sql id="queryCondition">
+    <if test="iconName != null">
+      AND ic.icon_name LIKE concat("%", #{iconName}, "%")
+    </if>
+  </sql>
+</mapper>

@@ -743,7 +743,7 @@ CREATE TABLE `supplier` (
   `id` bigint(20) NOT NULL auto_increment,
   `supplier_name` varchar(255) default NULL COMMENT '供应商名称',
   `contact` varchar(255) default NULL COMMENT '联系人',
-  `phone` varchar(20) default NULL COMMENT '手机号码',
+  `cellphone` varchar(20) default NULL COMMENT '手机号码',
   `email` varchar(255) default NULL COMMENT '邮箱地址',
   `telephone` varchar(255) default NULL COMMENT '联系电话',
   `address` varchar(255) default NULL COMMENT '地址',

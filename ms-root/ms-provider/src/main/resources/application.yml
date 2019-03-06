@@ -21,6 +21,10 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
+  servlet:
+    multipart:
+      max-file-size: 600Mb
+      max-request-size: 600Mb
 
 server:
   port: 8762
@@ -36,3 +40,14 @@ eureka:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.train.model
+
+app:
+  max:
+    size: 524288000
+  ftp:
+    dir: file
+    url:  10.1.36.201
+    port: 8888
+    username: test
+    password: test
+    domain: http://10.1.36.201:8888/

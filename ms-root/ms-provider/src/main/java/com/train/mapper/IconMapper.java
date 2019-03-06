@@ -11,4 +11,6 @@ public interface IconMapper {
     Integer getIconCount(Map<String, Object> param);
 
     List<Icon> getIconList(Map<String, Object> param);
+
+    Integer insertOrUpdate(Icon icon);
 }

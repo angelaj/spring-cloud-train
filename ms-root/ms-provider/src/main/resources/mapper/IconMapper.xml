@@ -40,4 +40,13 @@
       AND ic.icon_name LIKE concat("%", #{iconName}, "%")
     </if>
   </sql>
+
+  <insert id="insertOrUpdate" parameterType="com.train.model.Icon">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO icon (icon_name, icon_style, create_time)
+    values (#{iconName}, #{iconStyle}, now())
+    ON DUPLICATE KEY UPDATE icon_name = #{iconName}
+  </insert>
 </mapper>

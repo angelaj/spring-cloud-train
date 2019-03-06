@@ -1,26 +1,40 @@
 package com.train.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Supplier {
+/**
+ * 供应商
+ */
+public class Supplier implements Serializable{
+   //供应商ID
     private Long id;
 
+    //供应商名称
     private String supplierName;
 
+    //联系人
     private String contact;
 
-    private String phone;
+    //手机号
+    private String cellphone;
 
+    //邮箱
     private String email;
 
+    //联系电话
     private String telephone;
 
+    //地址
     private String address;
 
+    //备注
     private String remark;
 
+    //创建时间
     private Date createTime;
 
+    //更新时间
     private Date updateTime;
 
     public Long getId() {
@@ -36,7 +50,7 @@ public class Supplier {
     }
 
     public void setSupplierName(String supplierName) {
-        this.supplierName = supplierName == null ? null : supplierName.trim();
+        this.supplierName = supplierName;
     }
 
     public String getContact() {
@@ -44,15 +58,15 @@ public class Supplier {
     }
 
     public void setContact(String contact) {
-        this.contact = contact == null ? null : contact.trim();
+        this.contact = contact;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getCellphone() {
+        return cellphone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
+    public void setCellphone(String cellphone) {
+        this.cellphone = cellphone;
     }
 
     public String getEmail() {
@@ -60,7 +74,7 @@ public class Supplier {
     }
 
     public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+        this.email = email;
     }
 
     public String getTelephone() {
@@ -68,7 +82,7 @@ public class Supplier {
     }
 
     public void setTelephone(String telephone) {
-        this.telephone = telephone == null ? null : telephone.trim();
+        this.telephone = telephone;
     }
 
     public String getAddress() {
@@ -76,7 +90,7 @@ public class Supplier {
     }
 
     public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
+        this.address = address;
     }
 
     public String getRemark() {
@@ -84,7 +98,7 @@ public class Supplier {
     }
 
     public void setRemark(String remark) {
-        this.remark = remark == null ? null : remark.trim();
+        this.remark = remark;
     }
 
     public Date getCreateTime() {
